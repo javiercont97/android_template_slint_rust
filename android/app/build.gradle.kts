@@ -1,5 +1,11 @@
 plugins {
     id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+}
+
+// Kotlin dependencies
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.22")
 }
 
 android {
@@ -20,6 +26,13 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
     buildTypes {
         release {
             isMinifyEnabled = false

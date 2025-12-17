@@ -14,7 +14,7 @@
         android:hardwareAccelerated="true">
 
         <activity
-            android:name="android.app.NativeActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTop">

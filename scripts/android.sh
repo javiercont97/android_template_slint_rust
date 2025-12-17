@@ -30,7 +30,7 @@ APP_NAME="slint_app" # Change this to your app name
 #######################################################
 ANDROID_DIR="$PROJECT_ROOT/android"
 PACKAGE_NAME="com.${APP_NAME}.app"
-ACTIVITY_NAME="android.app.NativeActivity"
+ACTIVITY_NAME=".MainActivity"
 
 # APK paths
 DEBUG_APK="$PROJECT_ROOT/${APP_NAME}-debug.apk"
