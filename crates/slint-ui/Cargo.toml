@@ -1,0 +1,17 @@
+[package]
+name = "slint-ui"
+description = "Shared UI component library for Slint/Rust projects"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+# UI Framework
+slint = { workspace = true }
+
+[build-dependencies]
+slint-build = "1.14"

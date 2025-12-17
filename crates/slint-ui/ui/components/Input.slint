@@ -1,0 +1,224 @@
+import { ColorPalette } from "../theme/Palette.slint";
+import { Spacing } from "../theme/Spacing.slint";
+import { Typography } from "../theme/Typography.slint";
+import { LineEdit } from "std-widgets.slint";
+
+
+// Use Slint's built-in InputType enum
+// Available values: text, password, number, decimal
+
+export component Input inherits Rectangle {
+    in property <string> placeholder: "";
+    in property <string> label: "";
+    in property <InputType> input-type: InputType.text;
+    in property <bool> disabled: false;
+    in property <bool> required: false;
+    in property <image> icon; // Optional left icon
+    in property <bool> show-password-toggle: input-type == InputType.password; // Auto-show for password fields
+    
+    in-out property <string> value: text-input.text;
+	forward-focus: text-input;
+    
+    // Validation state
+    in-out property <bool> has-error: false;
+    in-out property <string> error-message: "";
+    
+    // Internal state for password visibility
+    property <bool> password-visible: false;
+    
+    // Computed property: effective input type (password -> text when visible)
+    property <InputType> effective-input-type: {
+        if (input-type == InputType.password && password-visible) {
+            InputType.text
+        } else {
+            input-type
+        }
+    };
+    
+    // Called when input value changes
+    callback changed(string);
+    
+    // Called when input loses focus
+    callback blur();
+    
+    // Called when Enter is pressed
+    callback accepted(string);
+    
+    // Layout
+    height: label != "" ? Spacing.input-height + Typography.label + Spacing.component-gap-xs : Spacing.input-height;
+    
+    VerticalLayout {
+        spacing: Spacing.component-gap-xs;
+        
+        // Label
+        if (label != ""): HorizontalLayout {
+            spacing: Spacing.component-gap-xs;
+            
+            Text {
+                text: label;
+                font-size: Typography.label;
+                font-weight: Typography.weight-medium;
+                color: has-error ? ColorPalette.error : ColorPalette.text-primary;
+            }
+            
+            if (required): Text {
+                text: "*";
+                font-size: Typography.label;
+                color: ColorPalette.error;
+            }
+        }
+        
+        // Input container
+        Rectangle {
+            height: Spacing.input-height;
+            border-radius: Spacing.radius-md;
+            border-width: 1px;
+            border-color: {
+                if (has-error) {
+                    ColorPalette.error
+                } else if (text-input.has-focus) {
+                    ColorPalette.input-border-focus
+                } else {
+                    ColorPalette.input-border
+                }
+            };
+            background: disabled ? ColorPalette.background-secondary : ColorPalette.input-bg;
+            
+            animate border-color { duration: 150ms; easing: ease-in-out; }
+            
+            // Focus ring
+            Rectangle {
+                x: -2px;
+                y: -2px;
+                width: parent.width + 4px;
+                height: parent.height + 4px;
+                border-radius: Spacing.radius-md + 2px;
+                border-width: text-input.has-focus && !has-error ? 2px : 0px;
+                border-color: ColorPalette.brand-accent;
+                opacity: 0.3;
+                background: transparent;
+            }
+            
+            HorizontalLayout {
+                padding-left: Spacing.input-padding-horizontal;
+                padding-right: Spacing.input-padding-horizontal;
+				spacing: Spacing.component-gap-sm;
+                
+                // Optional left icon
+                if icon.width > 0: Rectangle {
+                    width: 20px;
+                    
+                    Image {
+                        width: 16px;
+                        height: 16px;
+                        source: icon;
+                        colorize: ColorPalette.text-muted;
+                        vertical-alignment: center;
+                        horizontal-alignment: center;
+                    }
+                }
+                
+				Rectangle {
+					clip: true;
+
+					text-input := TextInput {
+						property <length> computed-x;
+
+						x: min(0px, max(parent.width - self.width - self.text-cursor-width, self.computed-x));
+						width: max(parent.width - self.text-cursor-width, self.preferred-width);
+						height: 100%;
+						vertical-alignment: center;
+						horizontal-alignment: left;
+						single-line: true;
+						enabled: !disabled;
+                        color: disabled ? ColorPalette.text-disabled : ColorPalette.text-primary;
+						// Disable TextInput's built-in accessibility support as the widget takes care of that.
+						accessible-role: none;
+						font-size: Typography.input-text;
+						input-type: root.effective-input-type;
+
+						private property <length> inputMargin: 0px;
+
+						cursor-position-changed(cursor-position) => {
+							if cursor-position.x + self.computed_x < inputMargin {
+								self.computed_x = - cursor-position.x + inputMargin;
+							} else if cursor-position.x + self.computed_x > parent.width - inputMargin - self.text-cursor-width {
+								self.computed_x = parent.width - cursor-position.x - inputMargin - self.text-cursor-width;
+							}
+						}
+
+						accepted => {
+							root.accepted(self.text);
+						}
+
+						edited => {
+							root.has-error = false;
+							root.error-message = "";
+							root.changed(self.text);
+						}
+					}
+
+					// Placeholder text overlay
+					if (text-input.text == ""): Text {
+						text: placeholder;
+						font-size: Typography.input-placeholder;
+                        color: ColorPalette.input-placeholder;
+						vertical-alignment: center;
+						horizontal-alignment: left;
+					}
+				}
+                
+                // Password toggle button
+                if show-password-toggle: Rectangle {
+                    width: 28px;
+                    
+                    VerticalLayout {
+                        alignment: center;
+                        
+                        Image {
+                            width: 18px;
+                            height: 18px;
+                            source: password-visible ? 
+                                @image-url("../assets/icons/toggle-password-2.svg") :
+                                @image-url("../assets/icons/toggle-password-1.svg");
+                            colorize: ColorPalette.text-muted;
+                            horizontal-alignment: center;
+                        }
+                    }
+                    
+                    TouchArea {
+                        clicked => {
+                            password-visible = !password-visible;
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Error message
+        if (has-error && error-message != ""): Text {
+            text: error-message;
+            font-size: Typography.caption;
+            color: ColorPalette.error;
+        }
+    }
+    
+    // Focus handling
+    public function set-focus() {
+        text-input.focus();
+    }
+    
+    public function clear() {
+        value = "";
+        has-error = false;
+        error-message = "";
+    }
+    
+    // Trigger validation manually
+    public function trigger-validation() -> bool {
+        if (value != "") {
+            return true; // Validation will be handled by Rust callback
+        }
+        return !required;
+    }
+}

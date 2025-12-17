@@ -1,0 +1,48 @@
+import { Spacing } from "Spacing.slint";
+
+export global Typography {
+    // Platform-aware base sizing
+    out property <bool> is-mobile: Spacing.is-mobile;
+    
+    // Font families (can be overridden by apps if needed)
+    out property <string> font-family-base: "Inter";
+    out property <string> font-family-mono: "ui-monospace, 'SF Mono', Consolas, 'Liberation Mono', monospace";
+    
+    // Font weights
+    out property <int> weight-regular: 400;
+    out property <int> weight-medium: 500;
+    out property <int> weight-semibold: 600;
+    out property <int> weight-bold: 700;
+    
+    // Display sizes (hero text, large headings)
+    out property <length> display-xl: is-mobile ? 36px : 48px;
+    out property <length> display-lg: is-mobile ? 32px : 40px;
+    out property <length> display-md: is-mobile ? 28px : 36px;
+    
+    // Heading sizes
+    out property <length> heading-xl: is-mobile ? 24px : 32px;
+    out property <length> heading-lg: is-mobile ? 20px : 24px;
+    out property <length> heading-md: is-mobile ? 18px : 20px;
+    out property <length> heading-sm: is-mobile ? 16px : 18px;
+    
+    // Body text sizes
+    out property <length> body-lg: is-mobile ? 18px : 18px;
+    out property <length> body-md: is-mobile ? 16px : 16px;
+    out property <length> body-sm: is-mobile ? 14px : 14px;
+    
+    // Caption/Label sizes
+    out property <length> caption: is-mobile ? 12px : 12px;
+    out property <length> label: is-mobile ? 14px : 13px;
+    out property <length> overline: is-mobile ? 11px : 10px;
+    
+    // Button text
+    out property <length> button-text: is-mobile ? 16px : 14px;
+    
+    // Input text
+    out property <length> input-text: is-mobile ? 16px : 14px;
+    out property <length> input-placeholder: is-mobile ? 16px : 14px;
+    
+    // Line heights (as multipliers - not directly usable in Slint, for reference)
+    // Slint doesn't support line-height directly, but these can guide spacing
+    // tight: 1.25, normal: 1.5, relaxed: 1.75
+}

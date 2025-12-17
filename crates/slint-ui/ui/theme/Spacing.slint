@@ -1,0 +1,59 @@
+export global Spacing {
+    // Platform detection
+    out property <bool> is-mobile: Platform.os == OperatingSystemType.android || Platform.os == OperatingSystemType.ios;
+    out property <bool> is-desktop: !is-mobile;
+    
+    // Base unit for spacing calculations
+    out property <length> unit: 4px;
+    
+    // Page-level spacing
+    out property <length> page-padding: is-mobile ? 16px : 40px;
+    out property <length> page-padding-horizontal: is-mobile ? 16px : 48px;
+    out property <length> page-padding-vertical: is-mobile ? 16px : 32px;
+    
+    // Section spacing
+    out property <length> section-gap: is-mobile ? 24px : 32px;
+    out property <length> content-gap: is-mobile ? 16px : 24px;
+    
+    // Component spacing
+    out property <length> component-gap-xs: 4px;
+    out property <length> component-gap-sm: 8px;
+    out property <length> component-gap-md: is-mobile ? 12px : 16px;
+    out property <length> component-gap-lg: is-mobile ? 16px : 24px;
+    out property <length> component-gap-xl: is-mobile ? 24px : 32px;
+    
+    // Button sizing
+    out property <length> button-padding-horizontal: is-mobile ? 16px : 20px;
+    out property <length> button-padding-vertical: is-mobile ? 12px : 10px;
+    out property <length> button-height: is-mobile ? 48px : 40px;
+    out property <length> button-min-width: is-mobile ? 120px : 100px;
+    
+    // Input sizing
+    out property <length> input-height: is-mobile ? 48px : 40px;
+    out property <length> input-padding-horizontal: is-mobile ? 16px : 12px;
+    out property <length> input-padding-vertical: is-mobile ? 12px : 8px;
+    
+    // Card/Container sizing
+    out property <length> card-padding: is-mobile ? 16px : 24px;
+    out property <length> card-border-radius: is-mobile ? 12px : 8px;
+    
+    // Header/Navigation sizing
+    out property <length> header-height: is-mobile ? 56px : 64px;
+    out property <length> sidebar-width: 280px;  // Desktop only
+    out property <length> nav-item-height: is-mobile ? 48px : 40px;
+    
+    // Touch targets (minimum for accessibility)
+    out property <length> touch-target-min: is-mobile ? 44px : 32px;
+    
+    // Border radius presets
+    out property <length> radius-sm: 4px;
+    out property <length> radius-md: 8px;
+    out property <length> radius-lg: 12px;
+    out property <length> radius-xl: 16px;
+    out property <length> radius-full: 9999px;
+    
+    // Icon sizes
+    out property <length> icon-sm: is-mobile ? 20px : 16px;
+    out property <length> icon-md: is-mobile ? 24px : 20px;
+    out property <length> icon-lg: is-mobile ? 32px : 28px;
+}

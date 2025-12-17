@@ -1,0 +1,18 @@
+import { ColorPalette } from "../theme/Palette.slint";
+import { Spacing } from "../theme/Spacing.slint";
+
+export component Card inherits Rectangle {
+    in property <bool> elevated: false;
+    in property <bool> outlined: true;
+    
+    background: ColorPalette.surface;
+    border-radius: Spacing.card-border-radius;
+    border-width: outlined ? 1px : 0px;
+    border-color: ColorPalette.border-light;
+    
+    drop-shadow-blur: elevated ? 8px : 0px;
+    drop-shadow-offset-y: elevated ? 2px : 0px;
+    drop-shadow-color: ColorPalette.is-dark ? #00000040 : #00000020;
+    
+    @children
+}

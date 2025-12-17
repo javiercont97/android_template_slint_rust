@@ -1,0 +1,44 @@
+import { ColorPalette } from "../theme/Palette.slint";
+import { Spacing } from "../theme/Spacing.slint";
+
+export component IconButton inherits Rectangle {
+    in property <image> icon;
+    in property <bool> disabled: false;
+    in property <color> icon-color: ColorPalette.text-primary;
+    
+    callback clicked();
+    
+    width: Spacing.touch-target-min;
+    height: Spacing.touch-target-min;
+    border-radius: Spacing.radius-md;
+    
+    background: {
+        if (touch-area.pressed) {
+            ColorPalette.background-tertiary
+        } else if (touch-area.has-hover) {
+            ColorPalette.background-secondary
+        } else {
+            transparent
+        }
+    };
+    
+    opacity: disabled ? 0.5 : 1.0;
+    
+    touch-area := TouchArea {
+        enabled: !disabled;
+        mouse-cursor: disabled ? MouseCursor.default : MouseCursor.pointer;
+        
+        clicked => {
+            root.clicked();
+        }
+    }
+    
+    Image {
+        source: icon;
+        width: Spacing.icon-md;
+        height: Spacing.icon-md;
+        x: (parent.width - self.width) / 2;
+        y: (parent.height - self.height) / 2;
+        colorize: disabled ? ColorPalette.text-disabled : icon-color;
+    }
+}

@@ -1,0 +1,73 @@
+import { VerticalBox, HorizontalBox } from "std-widgets.slint";
+import {
+	// Theme
+    ColorPalette, 
+    Spacing, 
+    Typography,
+    
+	// Components
+    Button,
+    ButtonVariant,
+    Input,
+	Card,
+	IconButton,
+	Separator,
+	VerificationCodeInput,
+
+} from "@slint-ui/UI.slint";
+
+
+
+// Main Application Window
+export component AppWindow inherits Window {
+    title: "Slint on Android";
+	default-font-family: Typography.font-family-base;
+    background: ColorPalette.background;
+    
+
+	property <int> count: 0;
+
+	VerticalBox {
+		spacing: Spacing.component-gap-lg;
+		padding: Spacing.component-gap-md;
+		
+		// Header
+		Text {
+			text: "Welcome to Slint on Android!";
+			font-size: Typography.heading-lg;
+			color: ColorPalette.text-primary;
+			horizontal-alignment: center;
+		}
+
+		counter := Text {
+			text: count;
+			font-size: 72px;
+			color: ColorPalette.text-primary;
+			horizontal-alignment: center;
+		}
+
+		HorizontalBox {
+			spacing: Spacing.component-gap-sm;
+
+			Button {
+				height: Spacing.button-height;
+				text: "-";
+				variant: ButtonVariant.primary;
+				clicked => {
+					count -= 1;
+					counter.text = count;
+				}
+			}
+
+			Button {
+				height: Spacing.button-height;
+				text: "+";
+				variant: ButtonVariant.primary;
+				clicked => {
+					count += 1;
+					counter.text = count;
+				}
+			}
+		}
+	}
+}
