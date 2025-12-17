@@ -1,0 +1,23 @@
+import { IconButton } from "./IconButton.slint";
+import { Spacing } from "../theme/Spacing.slint";
+import { ColorPalette } from "../theme/Palette.slint";
+import { AssetTable } from "../theme/AssetTable.slint";
+
+export component Navbar inherits Rectangle {
+	height: Spacing.header-height;
+	background: ColorPalette.brand-primary;
+
+	callback menu-clicked();
+
+	iconBtn := IconButton {
+		icon: AssetTable.menu-icon;
+		icon-color: ColorPalette.text-inverse;
+		width: Spacing.icon-lg;
+		height: Spacing.icon-lg;
+		x: root.width - iconBtn.width - Spacing.component-gap-md;
+
+		clicked => {
+			root.menu-clicked();
+		}
+	}
+}

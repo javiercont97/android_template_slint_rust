@@ -4,143 +4,143 @@ import { Typography } from "../theme/Typography.slint";
 
 // Button variant enum
 export enum ButtonVariant {
-    primary,
-    secondary,
-    ghost,
-    danger,
-    link,
-    // Social login variants - follow brand guidelines
-    google,
-    linkedin,
+	primary,
+	secondary,
+	ghost,
+	danger,
+	link,
+	// Social login variants - follow brand guidelines
+	google,
+	linkedin,
 }
 
 export component Button inherits Rectangle {
-    in property <string> text: "Button";
-    in property <ButtonVariant> variant: ButtonVariant.primary;
-    in property <bool> disabled: false;
-    in property <image> icon;
-    in property <bool> icon-only: false;
-    // When true, icon color is not modified (useful for brand logos like Google)
-    in property <bool> preserve-icon-color: variant == ButtonVariant.google;
-    
-    callback clicked();
-    
-    // Sizing - use preferred-height for flexibility with min-height constraint
-    min-height: Spacing.button-height;
-    min-width: icon-only ? Spacing.button-height : Spacing.button-min-width;
-    preferred-height: Spacing.button-height;
-    border-radius: Spacing.radius-md;
-    
-    // Colors based on variant
-    background: {
-        if (disabled) {
-            ColorPalette.button-secondary-bg
-        } else if (touch-area.pressed) {
-            variant == ButtonVariant.primary ? ColorPalette.button-primary-hover :
-            variant == ButtonVariant.secondary ? ColorPalette.button-secondary-hover :
-            variant == ButtonVariant.ghost ? ColorPalette.background-tertiary :
-            variant == ButtonVariant.danger ? #dc2626 :
-            variant == ButtonVariant.link ? transparent :
-            variant == ButtonVariant.google ? #e8e8e8 :
-            variant == ButtonVariant.linkedin ? #005582 :
-            ColorPalette.button-primary-hover
-        } else if (touch-area.has-hover) {
-            variant == ButtonVariant.primary ? ColorPalette.brand-primary :
-            variant == ButtonVariant.secondary ? ColorPalette.button-secondary-hover :
-            variant == ButtonVariant.ghost ? ColorPalette.background-secondary :
-            variant == ButtonVariant.danger ? #b91c1c :
-            variant == ButtonVariant.link ? transparent :
-            variant == ButtonVariant.google ? #f8f9fa :
-            variant == ButtonVariant.linkedin ? #006399 :
-            ColorPalette.brand-primary
-        } else {
-            variant == ButtonVariant.primary ? ColorPalette.button-primary-bg :
-            variant == ButtonVariant.secondary ? ColorPalette.button-secondary-bg :
-            variant == ButtonVariant.ghost ? transparent :
-            variant == ButtonVariant.danger ? ColorPalette.error :
-            variant == ButtonVariant.link ? transparent :
-            variant == ButtonVariant.google ? #ffffff :
-            variant == ButtonVariant.linkedin ? #0077B5 :
-            ColorPalette.button-primary-bg
-        }
-    };
-    
-    // Border for secondary and google variants
-    border-width: (variant == ButtonVariant.secondary || variant == ButtonVariant.google) ? 1px : 0px;
-    border-color: variant == ButtonVariant.google ? #dadce0 : ColorPalette.border;
-    
-    // Opacity when disabled
-    opacity: disabled ? 0.5 : 1.0;
-    
-    // Smooth background transition
-    animate background { duration: 150ms; easing: ease-in-out; }
-    
-    touch-area := TouchArea {
-        enabled: !disabled;
-        mouse-cursor: disabled ? MouseCursor.default : MouseCursor.pointer;
-        
-        clicked => {
-            root.clicked();
-        }
-    }
-    
-    HorizontalLayout {
-        alignment: center;
-        padding-left: icon-only ? 0 : Spacing.button-padding-horizontal;
-        padding-right: icon-only ? 0 : Spacing.button-padding-horizontal;
-        padding-top: Spacing.button-padding-vertical;
-        padding-bottom: Spacing.button-padding-vertical;
-        spacing: Spacing.component-gap-sm;
-        
-        // Icon with colorization (preserves original color for brand logos when preserve-icon-color is true)
-        if (icon.width > 0 && preserve-icon-color): Image {
-            source: icon;
-            width: Spacing.icon-md;
-            height: Spacing.icon-md;
-            vertical-alignment: center;
-            // No colorize - preserve original icon colors
-        }
-        
-        if (icon.width > 0 && !preserve-icon-color): Image {
-            source: icon;
-            width: Spacing.icon-md;
-            height: Spacing.icon-md;
-            vertical-alignment: center;
-            colorize: {
-                if (disabled) {
-                    ColorPalette.text-disabled
-                } else {
-                    variant == ButtonVariant.primary ? ColorPalette.button-primary-text :
-                    variant == ButtonVariant.secondary ? ColorPalette.button-secondary-text :
-                    variant == ButtonVariant.ghost ? ColorPalette.text-primary :
-                    variant == ButtonVariant.danger ? #ffffff :
-                    variant == ButtonVariant.link ? ColorPalette.brand-accent :
-                    variant == ButtonVariant.linkedin ? #ffffff :
-                    ColorPalette.button-primary-text
-                }
-            };
-        }
-        
-        if (!icon-only): Text {
-            text: root.text;
-            font-size: Typography.button-text;
-            font-weight: Typography.weight-medium;
-            vertical-alignment: center;
-            horizontal-alignment: center;
-            color: {
-                if (disabled) {
-                    ColorPalette.text-disabled
-                } else {
-                    variant == ButtonVariant.primary ? ColorPalette.button-primary-text :
-                    variant == ButtonVariant.secondary ? ColorPalette.button-secondary-text :
-                    variant == ButtonVariant.ghost ? ColorPalette.text-primary :
-                    variant == ButtonVariant.danger ? #ffffff :
-                    variant == ButtonVariant.link ? ColorPalette.brand-accent :
-                    variant == ButtonVariant.google ? #1f1f1f :
-                    variant == ButtonVariant.linkedin ? #ffffff :
-                    ColorPalette.button-primary-text
-                }
-            };
-        }
-    }
+	in property <string> text: "Button";
+	in property <ButtonVariant> variant: ButtonVariant.primary;
+	in property <bool> disabled: false;
+	in property <image> icon;
+	in property <bool> icon-only: false;
+	// When true, icon color is not modified (useful for brand logos like Google)
+	in property <bool> preserve-icon-color: variant == ButtonVariant.google;
+	
+	callback clicked();
+	
+	// Sizing - use preferred-height for flexibility with min-height constraint
+	min-height: Spacing.button-height;
+	min-width: icon-only ? Spacing.button-height : Spacing.button-min-width;
+	preferred-height: Spacing.button-height;
+	border-radius: Spacing.radius-md;
+	
+	// Colors based on variant
+	background: {
+		if (disabled) {
+			ColorPalette.button-secondary-bg
+		} else if (touch-area.pressed) {
+			variant == ButtonVariant.primary ? ColorPalette.button-primary-hover :
+			variant == ButtonVariant.secondary ? ColorPalette.button-secondary-hover :
+			variant == ButtonVariant.ghost ? ColorPalette.background-tertiary :
+			variant == ButtonVariant.danger ? #dc2626 :
+			variant == ButtonVariant.link ? transparent :
+			variant == ButtonVariant.google ? #e8e8e8 :
+			variant == ButtonVariant.linkedin ? #005582 :
+			ColorPalette.button-primary-hover
+		} else if (touch-area.has-hover) {
+			variant == ButtonVariant.primary ? ColorPalette.brand-primary :
+			variant == ButtonVariant.secondary ? ColorPalette.button-secondary-hover :
+			variant == ButtonVariant.ghost ? ColorPalette.background-secondary :
+			variant == ButtonVariant.danger ? #b91c1c :
+			variant == ButtonVariant.link ? transparent :
+			variant == ButtonVariant.google ? #f8f9fa :
+			variant == ButtonVariant.linkedin ? #006399 :
+			ColorPalette.brand-primary
+		} else {
+			variant == ButtonVariant.primary ? ColorPalette.button-primary-bg :
+			variant == ButtonVariant.secondary ? ColorPalette.button-secondary-bg :
+			variant == ButtonVariant.ghost ? transparent :
+			variant == ButtonVariant.danger ? ColorPalette.error :
+			variant == ButtonVariant.link ? transparent :
+			variant == ButtonVariant.google ? #ffffff :
+			variant == ButtonVariant.linkedin ? #0077B5 :
+			ColorPalette.button-primary-bg
+		}
+	};
+	
+	// Border for secondary and google variants
+	border-width: (variant == ButtonVariant.secondary || variant == ButtonVariant.google) ? 1px : 0px;
+	border-color: variant == ButtonVariant.google ? #dadce0 : ColorPalette.border;
+	
+	// Opacity when disabled
+	opacity: disabled ? 0.5 : 1.0;
+	
+	// Smooth background transition
+	animate background { duration: 150ms; easing: ease-in-out; }
+	
+	touch-area := TouchArea {
+		enabled: !disabled;
+		mouse-cursor: disabled ? MouseCursor.default : MouseCursor.pointer;
+		
+		clicked => {
+			root.clicked();
+		}
+	}
+	
+	HorizontalLayout {
+		alignment: center;
+		padding-left: icon-only ? 0 : Spacing.button-padding-horizontal;
+		padding-right: icon-only ? 0 : Spacing.button-padding-horizontal;
+		padding-top: Spacing.button-padding-vertical;
+		padding-bottom: Spacing.button-padding-vertical;
+		spacing: Spacing.component-gap-sm;
+		
+		// Icon with colorization (preserves original color for brand logos when preserve-icon-color is true)
+		if (icon.width > 0 && preserve-icon-color): Image {
+			source: icon;
+			width: Spacing.icon-md;
+			height: Spacing.icon-md;
+			vertical-alignment: center;
+			// No colorize - preserve original icon colors
+		}
+		
+		if (icon.width > 0 && !preserve-icon-color): Image {
+			source: icon;
+			width: Spacing.icon-md;
+			height: Spacing.icon-md;
+			vertical-alignment: center;
+			colorize: {
+				if (disabled) {
+					ColorPalette.text-disabled
+				} else {
+					variant == ButtonVariant.primary ? ColorPalette.button-primary-text :
+					variant == ButtonVariant.secondary ? ColorPalette.button-secondary-text :
+					variant == ButtonVariant.ghost ? ColorPalette.text-primary :
+					variant == ButtonVariant.danger ? #ffffff :
+					variant == ButtonVariant.link ? ColorPalette.brand-accent :
+					variant == ButtonVariant.linkedin ? #ffffff :
+					ColorPalette.button-primary-text
+				}
+			};
+		}
+		
+		if (!icon-only): Text {
+			text: root.text;
+			font-size: Typography.button-text;
+			font-weight: Typography.weight-medium;
+			vertical-alignment: center;
+			horizontal-alignment: center;
+			color: {
+				if (disabled) {
+					ColorPalette.text-disabled
+				} else {
+					variant == ButtonVariant.primary ? ColorPalette.button-primary-text :
+					variant == ButtonVariant.secondary ? ColorPalette.button-secondary-text :
+					variant == ButtonVariant.ghost ? ColorPalette.text-primary :
+					variant == ButtonVariant.danger ? #ffffff :
+					variant == ButtonVariant.link ? ColorPalette.brand-accent :
+					variant == ButtonVariant.google ? #1f1f1f :
+					variant == ButtonVariant.linkedin ? #ffffff :
+					ColorPalette.button-primary-text
+				}
+			};
+		}
+	}
 }

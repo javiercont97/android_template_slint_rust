@@ -1,0 +1,26 @@
+import { Button, ButtonVariant } from "../components/Button.slint";
+import { ColorPalette } from "../theme/Palette.slint";
+import { Spacing } from "../theme/Spacing.slint";
+import { Typography } from "../theme/Typography.slint";
+import { Separator } from "../components/Separator.slint";
+
+import { AboutSlint, HorizontalBox, VerticalBox } from "std-widgets.slint";
+
+export component TicTacToe inherits Rectangle {
+	property <int> count: 0;
+
+	VerticalBox {
+		spacing: Spacing.component-gap-md;
+		padding: Spacing.component-gap-md;
+		width: parent.width;
+		height: parent.height;
+
+
+		Text {
+			text: "Tic Tac Toe game";
+			font-size: Typography.heading-lg;
+			color: ColorPalette.text-primary;
+			horizontal-alignment: center;
+		}
+	}
+}

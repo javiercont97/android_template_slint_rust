@@ -5,115 +5,115 @@ import { Typography } from "../theme/Typography.slint";
 
 // Single digit box component
 component CodeDigit inherits Rectangle {
-    in property <bool> is-filled: false;
-    in property <bool> is-focused: false;
-    
-    width: Spacing.is-mobile ? 44px : 48px;
-    height: Spacing.is-mobile ? 52px : 56px;
-    background: ColorPalette.input-bg;
-    border-radius: Spacing.radius-md;
-    border-width: 2px;
-    border-color: is-focused ? ColorPalette.brand-accent : ColorPalette.input-border;
-    
-    animate border-color { duration: 150ms; easing: ease-in-out; }
-    
-    Text {
-        text: is-filled ? "•" : "";
-        color: ColorPalette.text-primary;
-        font-size: Typography.heading-lg;
-        font-weight: Typography.weight-semibold;
-        horizontal-alignment: center;
-        vertical-alignment: center;
-    }
+	in property <bool> is-filled: false;
+	in property <bool> is-focused: false;
+	
+	width: Spacing.is-mobile ? 44px : 48px;
+	height: Spacing.is-mobile ? 52px : 56px;
+	background: ColorPalette.input-bg;
+	border-radius: Spacing.radius-md;
+	border-width: 2px;
+	border-color: is-focused ? ColorPalette.brand-accent : ColorPalette.input-border;
+	
+	animate border-color { duration: 150ms; easing: ease-in-out; }
+	
+	Text {
+		text: is-filled ? "•" : "";
+		color: ColorPalette.text-primary;
+		font-size: Typography.heading-lg;
+		font-weight: Typography.weight-semibold;
+		horizontal-alignment: center;
+		vertical-alignment: center;
+	}
 }
 
 export component VerificationCodeInput inherits Rectangle {
-    // Properties
-    in-out property <string> code: "";
-    in property <int> digit-count: 6;
-    
-    // Callbacks
-    callback code-complete(string);
-    callback code-changed(string);
-    
-    // Calculated properties
-    property <int> code-length: code.character-count;
-    property <int> current-position: min(code-length, digit-count);
-    
-    height: Spacing.is-mobile ? 52px : 56px;
-    background: transparent;
-    
-    HorizontalLayout {
-        spacing: Spacing.component-gap-sm;
-        alignment: center;
-        
-        CodeDigit {
-            is-filled: code-length >= 1;
-            is-focused: current-position == 0 && text-input.has-focus;
-        }
-        
-        CodeDigit {
-            is-filled: code-length >= 2;
-            is-focused: current-position == 1 && text-input.has-focus;
-        }
-        
-        CodeDigit {
-            is-filled: code-length >= 3;
-            is-focused: current-position == 2 && text-input.has-focus;
-        }
-        
-        CodeDigit {
-            is-filled: code-length >= 4;
-            is-focused: current-position == 3 && text-input.has-focus;
-        }
-        
-        CodeDigit {
-            is-filled: code-length >= 5;
-            is-focused: current-position == 4 && text-input.has-focus;
-        }
-        
-        CodeDigit {
-            is-filled: code-length >= 6;
-            is-focused: current-position == 5 && text-input.has-focus;
-        }
-    }
-    
-    // Hidden input field to capture keyboard input
-    text-input := TextInput {
-        width: 0px;
-        height: 0px;
-        opacity: 0;
-        text <=> root.code;
-        input-type: InputType.number;
-        
-        edited => {
-            // Limit to digit-count characters
-            if (self.text.character-count > root.digit-count) {
-                // Truncate - Slint doesn't have substring, so we rely on Rust for this
-            }
-            root.code-changed(self.text);
-            
-            // Check if complete
-            if (self.text.character-count == root.digit-count) {
-                root.code-complete(self.text);
-            }
-        }
-    }
-    
-    // Make the entire area clickable to focus
-    TouchArea {
-        clicked => {
-            text-input.focus();
-        }
-    }
-    
-    // Public function to focus the input
-    public function set-focus() {
-        text-input.focus();
-    }
-    
-    // Public function to clear the input
-    public function clear() {
-        code = "";
-    }
+	// Properties
+	in-out property <string> code: "";
+	in property <int> digit-count: 6;
+	
+	// Callbacks
+	callback code-complete(string);
+	callback code-changed(string);
+	
+	// Calculated properties
+	property <int> code-length: code.character-count;
+	property <int> current-position: min(code-length, digit-count);
+	
+	height: Spacing.is-mobile ? 52px : 56px;
+	background: transparent;
+	
+	HorizontalLayout {
+		spacing: Spacing.component-gap-sm;
+		alignment: center;
+		
+		CodeDigit {
+			is-filled: code-length >= 1;
+			is-focused: current-position == 0 && text-input.has-focus;
+		}
+		
+		CodeDigit {
+			is-filled: code-length >= 2;
+			is-focused: current-position == 1 && text-input.has-focus;
+		}
+		
+		CodeDigit {
+			is-filled: code-length >= 3;
+			is-focused: current-position == 2 && text-input.has-focus;
+		}
+		
+		CodeDigit {
+			is-filled: code-length >= 4;
+			is-focused: current-position == 3 && text-input.has-focus;
+		}
+		
+		CodeDigit {
+			is-filled: code-length >= 5;
+			is-focused: current-position == 4 && text-input.has-focus;
+		}
+		
+		CodeDigit {
+			is-filled: code-length >= 6;
+			is-focused: current-position == 5 && text-input.has-focus;
+		}
+	}
+	
+	// Hidden input field to capture keyboard input
+	text-input := TextInput {
+		width: 0px;
+		height: 0px;
+		opacity: 0;
+		text <=> root.code;
+		input-type: InputType.number;
+		
+		edited => {
+			// Limit to digit-count characters
+			if (self.text.character-count > root.digit-count) {
+				// Truncate - Slint doesn't have substring, so we rely on Rust for this
+			}
+			root.code-changed(self.text);
+			
+			// Check if complete
+			if (self.text.character-count == root.digit-count) {
+				root.code-complete(self.text);
+			}
+		}
+	}
+	
+	// Make the entire area clickable to focus
+	TouchArea {
+		clicked => {
+			text-input.focus();
+		}
+	}
+	
+	// Public function to focus the input
+	public function set-focus() {
+		text-input.focus();
+	}
+	
+	// Public function to clear the input
+	public function clear() {
+		code = "";
+	}
 }

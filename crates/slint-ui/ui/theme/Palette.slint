@@ -2,60 +2,60 @@ import { Palette } from "std-widgets.slint";
 
 
 export global ColorPalette {
-    // Detect system color scheme
-    out property <bool> is-dark: Palette.color-scheme == ColorScheme.dark;
+	// Detect system color scheme
+	out property <bool> is-dark: Palette.color-scheme == ColorScheme.dark;
 
-    // PRIMARY BRAND COLORS (consistent across themes)
-    out property <color> brand-primary: #0a3d61;      // tarawera
-    out property <color> brand-secondary: #2c6d90;    // calypso
-    out property <color> brand-accent: #51aac8;       // shakespeare
-    out property <color> brand-light: #7ed4e2;        // aquamarine
-    out property <color> brand-lighter: #9fe1f9;      // sail
+	// PRIMARY BRAND COLORS (consistent across themes)
+	out property <color> brand-primary: #0a3d61;      // tarawera
+	out property <color> brand-secondary: #2c6d90;    // calypso
+	out property <color> brand-accent: #51aac8;       // shakespeare
+	out property <color> brand-light: #7ed4e2;        // aquamarine
+	out property <color> brand-lighter: #9fe1f9;      // sail
 
-    // SEMANTIC COLORS - Adaptive based on theme
-    // Background colors
-    out property <color> background: is-dark ? #111827 : #ffffff;
-    out property <color> background-secondary: is-dark ? #1a2431 : #f2f7fa;
-    out property <color> background-tertiary: is-dark ? #2a3747 : #e2edf5;
-    
-    // Surface colors (cards, dialogs, etc.)
-    out property <color> surface: is-dark ? #1a2431 : #ffffff;
-    out property <color> surface-elevated: is-dark ? #2a3747 : #f2f7fa;
-    
-    // Text colors
-    out property <color> text-primary: is-dark ? #ffffff : #111827;
-    out property <color> text-secondary: is-dark ? #a5bed0 : #5e7c95;
-    out property <color> text-muted: is-dark ? #7d99b0 : #7d99b0;
-    out property <color> text-disabled: is-dark ? #486179 : #a5bed0;
-    out property <color> text-inverse: is-dark ? #111827 : #ffffff;
-    
-    // Border colors
-    out property <color> border: is-dark ? #384b5d : #c8dbe8;
-    out property <color> border-light: is-dark ? #2a3747 : #e2edf5;
-    out property <color> border-focus: brand-accent;
-    
-    // Interactive element colors
-    out property <color> button-primary-bg: brand-secondary;
-    out property <color> button-primary-text: #ffffff;
-    out property <color> button-primary-hover: brand-primary;
-    
-    out property <color> button-secondary-bg: is-dark ? #2a3747 : #e2edf5;
-    out property <color> button-secondary-text: is-dark ? #ffffff : #111827;
-    out property <color> button-secondary-hover: is-dark ? #384b5d : #c8dbe8;
-    
-    // Input colors
-    out property <color> input-bg: is-dark ? #1a2431 : #ffffff;
-    out property <color> input-border: is-dark ? #384b5d : #c8dbe8;
-    out property <color> input-border-focus: brand-accent;
-    out property <color> input-placeholder: text-muted;
-    
-    // STATUS COLORS (same for both themes, with slight adjustments)
-    out property <color> success: #10b981;
-    out property <color> success-bg: is-dark ? #064e3b : #d1fae5;
-    out property <color> warning: #f59e0b;
-    out property <color> warning-bg: is-dark ? #78350f : #fef3c7;
-    out property <color> error: #ef4444;
-    out property <color> error-bg: is-dark ? #7f1d1d : #fee2e2;
-    out property <color> info: brand-accent;
-    out property <color> info-bg: is-dark ? #164e63 : #e0f2fe;
+	// SEMANTIC COLORS - Adaptive based on theme
+	// Background colors
+	out property <color> background: is-dark ? #111827 : #ffffff;
+	out property <color> background-secondary: is-dark ? #1a2431 : #f2f7fa;
+	out property <color> background-tertiary: is-dark ? #2a3747 : #e2edf5;
+	
+	// Surface colors (cards, dialogs, etc.)
+	out property <color> surface: is-dark ? #1a2431 : #ffffff;
+	out property <color> surface-elevated: is-dark ? #2a3747 : #f2f7fa;
+	
+	// Text colors
+	out property <color> text-primary: is-dark ? #ffffff : #111827;
+	out property <color> text-secondary: is-dark ? #a5bed0 : #5e7c95;
+	out property <color> text-muted: is-dark ? #7d99b0 : #7d99b0;
+	out property <color> text-disabled: is-dark ? #486179 : #a5bed0;
+	out property <color> text-inverse: is-dark ? #111827 : #ffffff;
+	
+	// Border colors
+	out property <color> border: is-dark ? #384b5d : #c8dbe8;
+	out property <color> border-light: is-dark ? #2a3747 : #e2edf5;
+	out property <color> border-focus: brand-accent;
+	
+	// Interactive element colors
+	out property <color> button-primary-bg: brand-secondary;
+	out property <color> button-primary-text: #ffffff;
+	out property <color> button-primary-hover: brand-primary;
+	
+	out property <color> button-secondary-bg: is-dark ? #2a3747 : #e2edf5;
+	out property <color> button-secondary-text: is-dark ? #ffffff : #111827;
+	out property <color> button-secondary-hover: is-dark ? #384b5d : #c8dbe8;
+	
+	// Input colors
+	out property <color> input-bg: is-dark ? #1a2431 : #ffffff;
+	out property <color> input-border: is-dark ? #384b5d : #c8dbe8;
+	out property <color> input-border-focus: brand-accent;
+	out property <color> input-placeholder: text-muted;
+	
+	// STATUS COLORS (same for both themes, with slight adjustments)
+	out property <color> success: #10b981;
+	out property <color> success-bg: is-dark ? #064e3b : #d1fae5;
+	out property <color> warning: #f59e0b;
+	out property <color> warning-bg: is-dark ? #78350f : #fef3c7;
+	out property <color> error: #ef4444;
+	out property <color> error-bg: is-dark ? #7f1d1d : #fee2e2;
+	out property <color> info: brand-accent;
+	out property <color> info-bg: is-dark ? #164e63 : #e0f2fe;
 }

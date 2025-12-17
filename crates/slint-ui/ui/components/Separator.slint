@@ -3,40 +3,40 @@ import { Spacing } from "../theme/Spacing.slint";
 import { Typography } from "../theme/Typography.slint";
 
 export component Separator inherits Rectangle {
-    // Properties
-    in property <string> text: "";
-    in property <length> line-height: 1px;
-    
-    height: 24px;
-    background: transparent;
-    
-    HorizontalLayout {
-        alignment: stretch;
-        spacing: Spacing.component-gap-md;
-        
-        // Left line
-        Rectangle {
-            vertical-stretch: 0;
-            y: (root.height - line-height) / 2;
-            height: line-height;
-            background: ColorPalette.border-light;
-        }
-        
-        // Text in the middle (optional)
-        if text != "": Text {
-            text: root.text;
-            color: ColorPalette.text-muted;
-            font-size: Typography.body-sm;
-            vertical-alignment: center;
-            horizontal-alignment: center;
-        }
-        
-        // Right line
-        Rectangle {
-            vertical-stretch: 0;
-            y: (root.height - line-height) / 2;
-            height: line-height;
-            background: ColorPalette.border-light;
-        }
-    }
+	// Properties
+	in property <string> text: "";
+	in property <length> line-height: 1px;
+	
+	height: 24px;
+	background: transparent;
+	
+	HorizontalLayout {
+		alignment: stretch;
+		spacing: Spacing.component-gap-md;
+		
+		// Left line
+		Rectangle {
+			vertical-stretch: 0;
+			y: (root.height - line-height) / 2;
+			height: line-height;
+			background: ColorPalette.border-light;
+		}
+		
+		// Text in the middle (optional)
+		if text != "": Text {
+			text: root.text;
+			color: ColorPalette.text-muted;
+			font-size: Typography.body-sm;
+			vertical-alignment: center;
+			horizontal-alignment: center;
+		}
+		
+		// Right line
+		Rectangle {
+			vertical-stretch: 0;
+			y: (root.height - line-height) / 2;
+			height: line-height;
+			background: ColorPalette.border-light;
+		}
+	}
 }

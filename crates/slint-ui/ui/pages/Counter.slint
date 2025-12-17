@@ -1,0 +1,63 @@
+import { Button, ButtonVariant } from "../components/Button.slint";
+import { ColorPalette } from "../theme/Palette.slint";
+import { Spacing } from "../theme/Spacing.slint";
+import { Typography } from "../theme/Typography.slint";
+import { Separator } from "../components/Separator.slint";
+
+import { AboutSlint, HorizontalBox, VerticalBox } from "std-widgets.slint";
+
+export component Counter inherits Rectangle {
+	property <int> count: 0;
+
+	VerticalBox {
+		spacing: Spacing.component-gap-md;
+		padding: Spacing.component-gap-md;
+		width: parent.width;
+		height: parent.height;
+
+
+		Text {
+			text: "Welcome to Slint on Android!";
+			font-size: Typography.heading-lg;
+			color: ColorPalette.text-primary;
+			horizontal-alignment: center;
+		}
+	
+		AboutSlint{}
+	
+		Separator {
+			text: "Counter";
+		}
+	
+		counter := Text {
+			text: count;
+			font-size: 72px;
+			color: ColorPalette.text-primary;
+			horizontal-alignment: center;
+		}
+	
+		HorizontalBox {
+			spacing: Spacing.component-gap-sm;
+	
+			Button {
+				height: Spacing.button-height;
+				text: "-";
+				variant: ButtonVariant.primary;
+				clicked => {
+					count -= 1;
+					counter.text = count;
+				}
+			}
+	
+			Button {
+				height: Spacing.button-height;
+				text: "+";
+				variant: ButtonVariant.primary;
+				clicked => {
+					count += 1;
+					counter.text = count;
+				}
+			}
+		}
+	}
+}

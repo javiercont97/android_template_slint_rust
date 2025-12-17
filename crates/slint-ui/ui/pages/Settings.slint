@@ -1,0 +1,25 @@
+import { Button, ButtonVariant } from "../components/Button.slint";
+import { ColorPalette } from "../theme/Palette.slint";
+import { Spacing } from "../theme/Spacing.slint";
+import { Typography } from "../theme/Typography.slint";
+import { Separator } from "../components/Separator.slint";
+
+import { AboutSlint, HorizontalBox, VerticalBox } from "std-widgets.slint";
+
+export component Settings inherits Rectangle {
+
+	VerticalBox {
+		spacing: Spacing.component-gap-md;
+		padding: Spacing.component-gap-md;
+		width: parent.width;
+		height: parent.height;
+
+
+		Text {
+			text: "Settings Page";
+			font-size: Typography.heading-lg;
+			color: ColorPalette.text-primary;
+			horizontal-alignment: center;
+		}
+	}
+}
