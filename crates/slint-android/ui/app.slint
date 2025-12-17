@@ -18,7 +18,6 @@ import {
 	// Pages
 	Counter,
 	Settings,
-	TicTacToe,
 
 	// Layouts
 	HomeLayout
@@ -26,7 +25,6 @@ import {
 } from "@slint-ui/UI.slint";
 
 import { AboutSlint } from "std-widgets.slint";
-
 
 
 export component AppWindow inherits Window {
@@ -39,11 +37,7 @@ export component AppWindow inherits Window {
 		
 		}
 
-		if homeLayout.pageSelected == 2: TicTacToe {
-
-		}
-
-		if homeLayout.pageSelected == 3: Settings {
+		if homeLayout.pageSelected == 2: Settings {
 
 		}
 	}

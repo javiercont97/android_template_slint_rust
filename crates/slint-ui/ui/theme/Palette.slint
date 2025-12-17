@@ -1,9 +1,19 @@
 import { Palette } from "std-widgets.slint";
 
+export enum ThemeMode {
+	LIGHT,
+	DARK,
+	SYSTEM
+}
 
 export global ColorPalette {
 	// Detect system color scheme
-	out property <bool> is-dark: Palette.color-scheme == ColorScheme.dark;
+	private property <bool> is-system-dark: Palette.color-scheme == ColorScheme.dark;
+
+	// Determine if dark mode is active
+	in-out property <ThemeMode> theme-mode: ThemeMode.SYSTEM;
+	out property <bool> is-dark: theme-mode == ThemeMode.DARK ? true : 
+								(theme-mode == ThemeMode.SYSTEM ? is-system-dark : false);
 
 	// PRIMARY BRAND COLORS (consistent across themes)
 	out property <color> brand-primary: #0a3d61;      // tarawera

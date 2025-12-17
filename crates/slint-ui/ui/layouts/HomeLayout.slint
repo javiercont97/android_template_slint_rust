@@ -2,7 +2,7 @@
 import { Navbar } from "../components/Navbar.slint";
 // import {  } from "std-widgets.slint";
 
-import { Button } from "../components/Button.slint";
+import { Button, ButtonVariant } from "../components/Button.slint";
 import { Spacing } from "../theme/Spacing.slint";
 import { ColorPalette } from "../theme/Palette.slint";
 import { AssetTable } from "../theme/AssetTable.slint";
@@ -11,8 +11,6 @@ export component HomeLayout inherits Rectangle {
 	// State for menu visibility
 	property <bool> menu-open: false;
 	out property <int> pageSelected: 1;
-
-	callback menuOptionChanged(int);
 
 	// Layout
 	VerticalLayout {
@@ -30,9 +28,9 @@ export component HomeLayout inherits Rectangle {
 	
 	// Collapsible menu
 	collapsibleMenu := Rectangle {
-		height: root.menu-open ? 3*60px : 0px;
+		height: root.menu-open ? (Spacing.button-height*2 + 24px + 8px) : 0px;
 		animate height { duration: 200ms; }
-		background: #2228;
+		background: ColorPalette.background-tertiary;
 		clip: true;
 
 		VerticalLayout {
@@ -41,32 +39,22 @@ export component HomeLayout inherits Rectangle {
 			padding: 12px;
 
 			Button {
-				text: "Option 1";
+				text: "Counter";
+				height: Spacing.button-height;
+				variant: root.pageSelected == 1 ? ButtonVariant.primary : ButtonVariant.secondary;
 
-				background: root.pageSelected == 1 ? #555 : transparent;
 				clicked => {
 					root.pageSelected = 1;
-					root.menuOptionChanged(1);
 				}
 			}
 
 			Button {
-				text: "Option 2";
+				text: "Settings";
+				height: Spacing.button-height;
+				variant: root.pageSelected == 2 ? ButtonVariant.primary : ButtonVariant.secondary;
 
-				background: root.pageSelected == 2 ? #555 : transparent;
 				clicked => {
 					root.pageSelected = 2;
-					root.menuOptionChanged(2);
-				}
-			}
-
-			Button {
-				text: "Option 3";
-				
-				background: root.pageSelected == 3 ? #555 : transparent;
-				clicked => {
-					root.pageSelected = 3;
-					root.menuOptionChanged(3);
 				}
 			}
 

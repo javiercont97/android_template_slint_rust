@@ -1,5 +1,5 @@
 import { Button, ButtonVariant } from "../components/Button.slint";
-import { ColorPalette } from "../theme/Palette.slint";
+import { ColorPalette, ThemeMode } from "../theme/Palette.slint";
 import { Spacing } from "../theme/Spacing.slint";
 import { Typography } from "../theme/Typography.slint";
 import { Separator } from "../components/Separator.slint";
@@ -16,10 +16,54 @@ export component Settings inherits Rectangle {
 
 
 		Text {
-			text: "Settings Page";
+			text: "Theme";
 			font-size: Typography.heading-lg;
 			color: ColorPalette.text-primary;
 			horizontal-alignment: center;
+			height: Typography.heading-lg;
 		}
+
+		VerticalBox {
+			spacing: Spacing.component-gap-md;
+
+			Button {
+				text: "Light Mode";
+				height: Spacing.button-height;
+				variant: ColorPalette.theme-mode == ThemeMode.LIGHT ?
+						ButtonVariant.primary : ButtonVariant.secondary;
+				
+
+				clicked => {
+					ColorPalette.theme-mode = ThemeMode.LIGHT;
+				}
+			}
+
+			Button {
+				text: "Dark Mode";
+				height: Spacing.button-height;
+				variant: ColorPalette.theme-mode == ThemeMode.DARK ?
+						ButtonVariant.primary : ButtonVariant.secondary;
+
+				clicked => {
+					ColorPalette.theme-mode = ThemeMode.DARK;
+				}
+			}
+
+			Button {
+				text: "System";
+				height: Spacing.button-height;
+				variant: ColorPalette.theme-mode == ThemeMode.SYSTEM ?
+						ButtonVariant.primary : ButtonVariant.secondary;
+
+				clicked => {
+					ColorPalette.theme-mode = ThemeMode.SYSTEM;
+				}
+			}
+		}
+
+		Separator {
+			line-color: ColorPalette.brand-accent;
+		}
+		
 	}
 }
