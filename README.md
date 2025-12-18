@@ -96,3 +96,10 @@ cargo generate --git https://github.com/javiercont97/android_template_slint_rust
 
 ## License
 MIT
+
+## Gallery
+
+![image](screenshots/image.png)
+![image](screenshots/image-2.png)
+![image](screenshots/image-3.png)
+![image](screenshots/image-4.png)
