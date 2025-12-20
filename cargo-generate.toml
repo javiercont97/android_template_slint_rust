@@ -1,23 +1,38 @@
 [template]
 ignore = [
-  "screenshots",
-  ".git",
-  "Cargo.lock",
-  "android/.gradle",
-  "android/app/build",
-  "android/build",
-  "android/local.properties",
-  "android/.github",
-  "slint_app-debug.apk",
-  "README.md",
+	"screenshots",
+	".git",
+	"Cargo.lock",
+	"android/.gradle",
+	"android/app/build",
+	"android/build",
+	"android/local.properties",
+	"android/.github",
+	"slint_app-debug.apk",
+	"README.md",
 ]
 
 include = [
-  "src/**",
-  "Cargo.toml",
-  "Cargo.lock",
-  "slint_app.slint",
-  "android/**",
-  "build.rs",
-  ".gitignore",
+	android\app\src\main\res\mipmap-hdpi\ic_launcher.png
+	android\app\src\main\res\mipmap-hdpi\ic_launcher_background.png
+	android\app\src\main\res\mipmap-hdpi\ic_launcher_foreground.png
+	android\app\src\main\res\mipmap-hdpi\ic_launcher_monochrome.png
+	android\app\src\main\res\mipmap-mdpi\ic_launcher.png
+	android\app\src\main\res\mipmap-mdpi\ic_launcher_background.png
+	android\app\src\main\res\mipmap-mdpi\ic_launcher_foreground.png
+	android\app\src\main\res\mipmap-mdpi\ic_launcher_monochrome.png
+	android\app\src\main\res\mipmap-xhdpi\ic_launcher.png
+	android\app\src\main\res\mipmap-xhdpi\ic_launcher_background.png
+	android\app\src\main\res\mipmap-xhdpi\ic_launcher_foreground.png
+	android\app\src\main\res\mipmap-xhdpi\ic_launcher_monochrome.png
+	android\app\src\main\res\mipmap-xxhdpi\ic_launcher.png
+	android\app\src\main\res\mipmap-xxhdpi\ic_launcher_background.png
+	android\app\src\main\res\mipmap-xxhdpi\ic_launcher_foreground.png
+	android\app\src\main\res\mipmap-xxhdpi\ic_launcher_monochrome.png
+	android\app\src\main\res\mipmap-xxxhdpi\ic_launcher.png
+	android\app\src\main\res\mipmap-xxxhdpi\ic_launcher_background.png
+	android\app\src\main\res\mipmap-xxxhdpi\ic_launcher_foreground.png
+	android\app\src\main\res\mipmap-xxxhdpi\ic_launcher_monochrome.png
+	android\app\src\main\res\play_store_512.png
+	android\gradle\wrapper\gradle-wrapper.jar,
 ]
