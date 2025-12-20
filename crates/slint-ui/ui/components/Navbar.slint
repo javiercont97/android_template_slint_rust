@@ -3,21 +3,35 @@ import { Spacing } from "../theme/Spacing.slint";
 import { ColorPalette } from "../theme/Palette.slint";
 import { AssetTable } from "../theme/AssetTable.slint";
 
+import { PageNavigator } from "../PageNavigator.slint";
+
 export component Navbar inherits Rectangle {
-	height: Spacing.header-height;
-	background: ColorPalette.brand-primary;
+    height: Spacing.header-height;
+    background: ColorPalette.brand-primary;
 
-	callback menu-clicked();
+    callback menu-clicked();
 
-	iconBtn := IconButton {
-		icon: AssetTable.menu-icon;
-		icon-color: white;
-		width: Spacing.icon-lg;
-		height: Spacing.icon-lg;
-		x: root.width - iconBtn.width - Spacing.component-gap-md;
+    backBtn := IconButton {
+        icon: AssetTable.back-icon;
+        icon-color: white;
+        width: Spacing.icon-lg;
+        height: Spacing.icon-lg;
+        x: Spacing.component-gap-md;
 
-		clicked => {
-			root.menu-clicked();
-		}
-	}
+        clicked => {
+            PageNavigator.navigate_back();
+        }
+    }
+
+    menuBtn := IconButton {
+        icon: AssetTable.menu-icon;
+        icon-color: white;
+        width: Spacing.icon-lg;
+        height: Spacing.icon-lg;
+        x: root.width - menuBtn.width - Spacing.component-gap-md;
+
+        clicked => {
+            root.menu-clicked();
+        }
+    }
 }
