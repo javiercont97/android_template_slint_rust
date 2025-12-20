@@ -13,26 +13,26 @@ ignore = [
 ]
 
 include = [
-	android\app\src\main\res\mipmap-hdpi\ic_launcher.png
-	android\app\src\main\res\mipmap-hdpi\ic_launcher_background.png
-	android\app\src\main\res\mipmap-hdpi\ic_launcher_foreground.png
-	android\app\src\main\res\mipmap-hdpi\ic_launcher_monochrome.png
-	android\app\src\main\res\mipmap-mdpi\ic_launcher.png
-	android\app\src\main\res\mipmap-mdpi\ic_launcher_background.png
-	android\app\src\main\res\mipmap-mdpi\ic_launcher_foreground.png
-	android\app\src\main\res\mipmap-mdpi\ic_launcher_monochrome.png
-	android\app\src\main\res\mipmap-xhdpi\ic_launcher.png
-	android\app\src\main\res\mipmap-xhdpi\ic_launcher_background.png
-	android\app\src\main\res\mipmap-xhdpi\ic_launcher_foreground.png
-	android\app\src\main\res\mipmap-xhdpi\ic_launcher_monochrome.png
-	android\app\src\main\res\mipmap-xxhdpi\ic_launcher.png
-	android\app\src\main\res\mipmap-xxhdpi\ic_launcher_background.png
-	android\app\src\main\res\mipmap-xxhdpi\ic_launcher_foreground.png
-	android\app\src\main\res\mipmap-xxhdpi\ic_launcher_monochrome.png
-	android\app\src\main\res\mipmap-xxxhdpi\ic_launcher.png
-	android\app\src\main\res\mipmap-xxxhdpi\ic_launcher_background.png
-	android\app\src\main\res\mipmap-xxxhdpi\ic_launcher_foreground.png
-	android\app\src\main\res\mipmap-xxxhdpi\ic_launcher_monochrome.png
-	android\app\src\main\res\play_store_512.png
+	android\app\src\main\res\mipmap-hdpi\ic_launcher.png,
+	android\app\src\main\res\mipmap-hdpi\ic_launcher_background.png,
+	android\app\src\main\res\mipmap-hdpi\ic_launcher_foreground.png,
+	android\app\src\main\res\mipmap-hdpi\ic_launcher_monochrome.png,
+	android\app\src\main\res\mipmap-mdpi\ic_launcher.png,
+	android\app\src\main\res\mipmap-mdpi\ic_launcher_background.png,
+	android\app\src\main\res\mipmap-mdpi\ic_launcher_foreground.png,
+	android\app\src\main\res\mipmap-mdpi\ic_launcher_monochrome.png,
+	android\app\src\main\res\mipmap-xhdpi\ic_launcher.png,
+	android\app\src\main\res\mipmap-xhdpi\ic_launcher_background.png,
+	android\app\src\main\res\mipmap-xhdpi\ic_launcher_foreground.png,
+	android\app\src\main\res\mipmap-xhdpi\ic_launcher_monochrome.png,
+	android\app\src\main\res\mipmap-xxhdpi\ic_launcher.png,
+	android\app\src\main\res\mipmap-xxhdpi\ic_launcher_background.png,
+	android\app\src\main\res\mipmap-xxhdpi\ic_launcher_foreground.png,
+	android\app\src\main\res\mipmap-xxhdpi\ic_launcher_monochrome.png,
+	android\app\src\main\res\mipmap-xxxhdpi\ic_launcher.png,
+	android\app\src\main\res\mipmap-xxxhdpi\ic_launcher_background.png,
+	android\app\src\main\res\mipmap-xxxhdpi\ic_launcher_foreground.png,
+	android\app\src\main\res\mipmap-xxxhdpi\ic_launcher_monochrome.png,
+	android\app\src\main\res\play_store_512.png,
 	android\gradle\wrapper\gradle-wrapper.jar,
 ]
