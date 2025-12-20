@@ -1,0 +1,31 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"command": "${workspaceFolder}/scripts/android.sh build",
+			"problemMatcher": [
+				"$rustc",
+				"$gradle"
+			],
+			"label": "Build Android App",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "shell",
+			"command": "${workspaceFolder}/scripts/android.sh run",
+			"problemMatcher": [
+				"$rustc",
+				"$gradle"
+			],
+			"label": "Run Android App",
+			"group": {
+				"kind": "test",
+				"isDefault": true
+			}
+		}
+	]
+}

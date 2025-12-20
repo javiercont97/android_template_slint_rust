@@ -7,8 +7,8 @@
 .env.*.local
 
 # IDE
+# .vscode/
 .idea/
-.vscode/
 *.swp
 *.swo
 *~

@@ -1,0 +1,6 @@
+{
+    "slint.libraryPaths": {
+        "slint-ui": "crates/slint-ui/ui"
+	},
+	"java.configuration.updateBuildConfiguration": "interactive"
+}
