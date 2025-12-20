@@ -1,4 +1,23 @@
 [template]
-ignore = [ 
+ignore = [
   "screenshots",
+  ".git",
+  "Cargo.lock",
+  "android/.gradle",
+  "android/app/build",
+  "android/build",
+  "android/local.properties",
+  "android/.github",
+  "slint_app-debug.apk",
+  "README.md",
+]
+
+include = [
+  "src/**",
+  "Cargo.toml",
+  "Cargo.lock",
+  "slint_app.slint",
+  "android/**",
+  "build.rs",
+  ".gitignore",
 ]
