@@ -1,0 +1,19 @@
+export enum Pages {
+	COUNTER,
+	SETTINGS,
+}
+
+
+export global PageNavigator {
+    in-out property <Pages> current-page: Pages.COUNTER;
+
+    // // ========== Navigation actions ==========
+	// // Push a new page onto the stack
+	callback navigate-to(Pages);
+
+    // // Pop the top page off the stack (optional, mostly handled by back button)
+	callback navigate-back();
+
+    // // Reset the stack to the initial page
+	callback reset();
+}

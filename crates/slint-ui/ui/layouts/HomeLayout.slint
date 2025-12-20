@@ -7,57 +7,58 @@ import { Spacing } from "../theme/Spacing.slint";
 import { ColorPalette } from "../theme/Palette.slint";
 import { AssetTable } from "../theme/AssetTable.slint";
 
+import { PageNavigator, Pages } from "../PageNavigator.slint";
+
 export component HomeLayout inherits Rectangle {
 	// State for menu visibility
 	property <bool> menu-open: false;
-	out property <int> pageSelected: 1;
-
-	// Layout
+    
+    // Layout
 	VerticalLayout {
-		spacing: 0px;
+        spacing: 0px;
 
-		Navbar {
-			menu-clicked => {
-				root.menu-open = !root.menu-open;
-			}
-		}
+        Navbar {
+            menu-clicked => {
+                root.menu-open = !root.menu-open;
+            }
+        }
 
-		@children
-
-	}
+        @children
+    }
 	
 	// Collapsible menu
 	collapsibleMenu := Rectangle {
-		height: root.menu-open ? (Spacing.button-height*2 + 24px + 8px) : 0px;
-		animate height { duration: 200ms; }
-		background: ColorPalette.background-tertiary;
-		clip: true;
+        height: root.menu-open ? (Spacing.button-height * 2 + 24px + 8px) : 0px;
+        animate height { duration: 200ms; }
+        background: ColorPalette.background-tertiary;
+        clip: true;
 
-		VerticalLayout {
-			visible: root.menu-open;
-			spacing: 8px;
-			padding: 12px;
+        VerticalLayout {
+            visible: root.menu-open;
+            spacing: 8px;
+            padding: 12px;
 
-			Button {
-				text: "Counter";
-				height: Spacing.button-height;
-				variant: root.pageSelected == 1 ? ButtonVariant.primary : ButtonVariant.secondary;
+            Button {
+                text: "Counter";
+                height: Spacing.button-height;
+                variant: PageNavigator.current-page == Pages.COUNTER ? ButtonVariant.primary : ButtonVariant.secondary;
 
-				clicked => {
-					root.pageSelected = 1;
-				}
-			}
+                clicked => {
+                    PageNavigator.navigate-to(Pages.COUNTER);
+                    root.menu-open = false;
+                }
+            }
 
-			Button {
-				text: "Settings";
-				height: Spacing.button-height;
-				variant: root.pageSelected == 2 ? ButtonVariant.primary : ButtonVariant.secondary;
+            Button {
+                text: "Settings";
+                height: Spacing.button-height;
+                variant: PageNavigator.current-page == Pages.SETTINGS ? ButtonVariant.primary : ButtonVariant.secondary;
 
-				clicked => {
-					root.pageSelected = 2;
-				}
-			}
-
-		}
-	}
+                clicked => {
+                    PageNavigator.navigate-to(Pages.SETTINGS);
+                    root.menu-open = false;
+                }
+            }
+        }
+    }
 }

@@ -1,44 +1,42 @@
 import { VerticalBox, HorizontalBox } from "std-widgets.slint";
 import {
 	// Theme
-	ColorPalette, 
-	Spacing, 
-	Typography,
+	ColorPalette,
+    Spacing,
+    Typography,
 	
 	// Components
 	Button,
-	ButtonVariant,
-	Input,
-	Card,
-	IconButton,
-	Separator,
-	VerificationCodeInput,
-	Navbar,
+    ButtonVariant,
+    Input,
+    Card,
+    IconButton,
+    Separator,
+    VerificationCodeInput,
+    Navbar,
 
 	// Pages
 	Counter,
-	Settings,
+    Settings,
+    PageNavigator,
+    Pages,
 
 	// Layouts
-	HomeLayout
-
+	HomeLayout,
 } from "@slint-ui/UI.slint";
 
 import { AboutSlint } from "std-widgets.slint";
 
+export { PageNavigator, Pages, AppWindow }
 
-export component AppWindow inherits Window {
-	title: "Slint on Android";
-	default-font-family: Typography.font-family-base;
-	background: ColorPalette.background;
+component AppWindow inherits Window {
+    title: "Slint on Android";
+    default-font-family: Typography.font-family-base;
+    background: ColorPalette.background;
 
-	homeLayout := HomeLayout {
-		if homeLayout.pageSelected == 1: Counter {
-		
-		}
+    homeLayout := HomeLayout {
+        if PageNavigator.current-page == Pages.COUNTER: Counter { }
 
-		if homeLayout.pageSelected == 2: Settings {
-
-		}
-	}
+        if PageNavigator.current-page == Pages.SETTINGS: Settings { }
+    }
 }
